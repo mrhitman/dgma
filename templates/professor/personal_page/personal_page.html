@@ -1,38 +1,30 @@
 {% extends "layout.html" %}
 {% block content %}
-    <style>
-        div {
-{#            border: 1px solid red;#}
-        }
-
-        #photo {
-            width: 263px;
-            height: 300px;
-            margin-left: 10px;
-        }
-
-        #button {
-            width: 263px;
-            height: 50px;
-            margin-left: 10px;
-        }
-
-        .data {
-            margin-left: 10px;
-        }
-    </style>
-    <div id="page">
-        <div style="float: left;">
-            <div id="photo"><img width="260" height="300" src="https://pp.vk.me/c627824/v627824438/53c95/Gz80QdP_NHc.jpg"></div>
-            <div id="button">load</div>
+<div id="page">
+    <div style="float: left;">
+        <div id="photo"><img width="260" height="300" src="https://pp.vk.me/c627824/v627824438/53c95/Gz80QdP_NHc.jpg">
         </div>
-        <div class="data" id="name"> Фамилия: {{ person.user.second_name }}</div>
-        <div class="data" id="second_name"> Имя: {{ person.user.name }}</div>
-        <div class="data" id="middle_name"> Отчество: {{ person.user.middle_name }}</div>
-        <div class="data" id="birthday"> Дата рождения {{ person.user.birthday.strftime('%Y %m %d') }}</div>
-        <div class="data" id="facility"> Кафедра: {{ person.facility }}</div>
-        <div class="data" id="post"> Должность: {{ person.post }}</div>
-        <div class="data" id="post"> Ученая степень: {{ person.academic_degree }}</div>
-        <div class="data" id="post"> Ученое звание: {{ person.rank }}</div>
+        <div id="button">load</div>
     </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">Фамилия:</div>
+            <div class="col-md-4">{{ person.user.second_name }}</div>
+            <div class="col-md-4">Имя:</div>
+            <div class="col-md-4">{{ person.user.name }}</div>
+            <div class="col-md-4">Отчество:</div>
+            <div class="col-md-4">{{ person.user.middle_name }}</div>
+            <div class="col-md-4">Дата рождения:</div>
+            <div class="col-md-4">{{ person.user.birthday.strftime('%Y %m %d') }}</div>
+            <div class="col-md-4">Кафедра:</div>
+            <div class="col-md-4">{{ person.facility }}</div>
+            <div class="col-md-4">Должность:</div>
+            <div class="col-md-4">{{ person.post }}</div>
+            <div class="col-md-4">Ученое звание:</div>
+            <div class="col-md-4">{{ person.rank }}</div>
+            <div class="col-md-4">Ученая степень:</div>
+            <div class="col-md-4">{{ person.academic_degree }}</div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,47 +1,58 @@
 {% extends "bootstrap/base.html" %}
 {% block metas %}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{% block title %} {% endblock %}</title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
 {% endblock %}
 {% block styles %}
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet"/>
-    <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet" type="text/css" media="all"/>
-    <link href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet" type="text/css" media="all"/>
-    <style>
-         #page {
-            height: 350px;
-            width: 1000px;
-            margin: 0 auto;
-            background-color: #E0E0E0;
-        }
-    </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<style>
+     #page {
+        height: 80%;
+        width: 1000px;
+        margin: 0 auto;
+    }
+</style>
 {% endblock %}
 {% block body %}
-    <div id="header-wrapper">
-        <div id="header" class="container">
-            <div id="logo">
-                <h1><a href="#">DGMA</a></h1>
-            </div>
-            <div id="menu">
-                <ul>
-                    <li class="active"><a href="{{ url_for('site.index') }}" accesskey="1" title="">Homepage</a></li>
-                    <li><a href="#" accesskey="2" title="">Our Clients</a></li>
-                    <li><a href="#" accesskey="3" title="">About Us</a></li>
-                    <li><a href="#" accesskey="4" title="">Careers</a></li>
-                    <li><a href="{{ url_for('site.login') }}" accesskey="5" title="">Login</a></li>
-                    <li><a href="{{ url_for('site.register') }}" accesskey="6" title="">Register</a></li>
-                </ul>
-            </div>
+<h1><a href="#">ДГМА</a></h1>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ url_for('site.index') }}" class="navbar-brand">Главная</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('professor.personal_page') }}">Личная страница</a></li>
+                <li><button type="button" class="btn btn-default navbar-btn"><a href="{{ url_for('site.logout') }}">Выход</a></button></li>
+                {% else %}
+                <li><a href="{{ url_for('site.login') }}">Логин</a></li>
+                <li><a href="{{ url_for('site.register') }}">Регистрация</a></li>
+                {% endif %}
+            </ul>
         </div>
     </div>
-    <div id="wrapper">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div id="copyright" class="container">
-        <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a
-                href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-    </div>
+</nav>
+
+<div id="wrapper">
+    {% block content %}
+    {% endblock %}
+</div>
+<div id="copyright" class="container">
+</div>
 {% endblock %}

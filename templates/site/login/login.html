@@ -1,23 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div id="page">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                  <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-        {% from "formhelpers.html" import render_field %}
-        <form method=post action="{{ url_for('site.login') }}">
-            <dl>
-                {{ form.hidden_tag() }}
-                {{ render_field(form.email) }}
-                {{ render_field(form.password) }}
-            </dl>
-            <p><input type=submit value=Login>
-        </form>
-    </div>
+<div id="page">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% from "formhelpers.html" import render_field %}
+    <form method=post action="{{ url_for('site.login') }}" class="form-horizontal">
+        <dl>
+            {{ form.hidden_tag() }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+        </dl>
+        <p><input type=submit value=Login class="btn btn-default">
+    </form>
+</div>
 {% endblock %}

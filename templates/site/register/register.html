@@ -1,22 +1,22 @@
 {% extends "layout.html" %}
 {% block title %} Регистрация {% endblock %}
 {% block content %}
-    {% from "formhelpers.html" import render_field %}
-    <form method=post action="{{ url_for('site.register') }}">
-        <dl>
-            {{ form.hidden_tag() }}
-            {{ render_field(form.name) }}
-            {{ render_field(form.second_name) }}
-            {{ render_field(form.middle_name) }}
-            {{ render_field(form.email) }}
-            {{ render_field(form.birthday) }}
-            {{ render_field(form.password) }}
-            {{ render_field(form.confirm) }}
-            {{ render_field(form.facility) }}
-            {{ render_field(form.post) }}
-            {{ render_field(form.rank) }}
-            {{ render_field(form.academic_degree) }}
-        </dl>
-        <p><input type=submit value=Register>
+{% from "formhelpers.html" import render_field %}
+<div id="page">
+    <form method=post action="{{ url_for('site.register') }}" class="form-horizontal">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.name) }}
+        {{ render_field(form.second_name) }}
+        {{ render_field(form.middle_name) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.birthday) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        {{ render_field(form.facility) }}
+        {{ render_field(form.post) }}
+        {{ render_field(form.rank) }}
+        {{ render_field(form.academic_degree) }}
+        <p><input type=submit value=Register class="btn btn-default">
     </form>
+</div>
 {% endblock %}

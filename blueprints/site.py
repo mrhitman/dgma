@@ -1,7 +1,5 @@
-import hashlib
-
 from flask import Blueprint, render_template, flash, redirect, url_for, abort
-from flask.ext.login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 
 from database import db
 from forms.login import LoginForm
@@ -10,7 +8,6 @@ from forms.registration import RegistrationForm
 from login_manger import login_manager
 from models.professor import Professor
 from models.user import User
-
 
 site = Blueprint('site', __name__, template_folder='templates')
 
@@ -29,7 +26,7 @@ def load_user(id):
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        #password = hashlib.md5(bytes(form.password.data, 'utf-8')).hexdigest()
+        # password = hashlib.md5(bytes(form.password.data, 'utf-8')).hexdigest()
         user = User.query.filter_by(email=form.email.data, password=form.password.data).first()
         if user is None:
             flash('No such user')
@@ -38,11 +35,11 @@ def login():
         return redirect(url_for('professor.personal_page'))
     return render_template('site/login/login.html', form=form)
 
-
+@login_required
 @site.route('/logout')
 def logout():
     logout_user()
-    return 'logout'
+    return redirect('/')
 
 
 @site.route('/register', methods=['GET', 'POST'])
