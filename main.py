@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_bootstrap import Bootstrap
 
 from config import Config
@@ -13,6 +13,7 @@ login_manager.init_app(app)
 
 db.init_app(app)
 Bootstrap(app)
+
 app.register_blueprint(site.site)
 app.register_blueprint(professor.professor)
 

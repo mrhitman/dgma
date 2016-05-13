@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, abort
+from flask import Blueprint, render_template, flash, redirect, url_for, send_from_directory, app
 from flask_login import login_user, logout_user, login_required
 
 from database import db

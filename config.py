@@ -6,5 +6,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     DEBUG = True
     SECRET_KEY = 'sf3tefjSFdajJt72DSF2dgzzx'
-    UPLOAD_FOLDER = '/runtime'
-    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+    UPLOAD_FOLDER = '/static'

@@ -1,20 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 <div id="page">
-    <form method=post action="{{ url_for('site.register') }}" class="form-horizontal">
+    {% from "formhelpers.html" import render_field %}
+    <form method=post action="{{ url_for('professor.edit') }}" class="form-horizontal" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         {{ render_field(form.name) }}
         {{ render_field(form.second_name) }}
         {{ render_field(form.middle_name) }}
         {{ render_field(form.email) }}
         {{ render_field(form.birthday) }}
-        {{ render_field(form.password) }}
-        {{ render_field(form.confirm) }}
         {{ render_field(form.facility) }}
         {{ render_field(form.post) }}
         {{ render_field(form.rank) }}
         {{ render_field(form.academic_degree) }}
-        <p><input type=submit value=Register class="btn btn-default">
+        {{ render_field(form.photo) }}
+        <p><input type=submit value=Edit class="btn btn-default">
     </form>
 </div>
 {% endblock %}

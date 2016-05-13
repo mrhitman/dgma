@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, app
+from flask import Blueprint, render_template
 from flask.ext.login import current_user
 from flask_login import login_required
 from werkzeug.utils import secure_filename
 
+from database import db
+from forms.edit_professor import EditProfessorForm
 from models.professor import Professor
 from config import Config
 
@@ -22,12 +24,15 @@ def personal_page():
 
 
 @login_required
+@professor.route('/edit', methods=['POST', 'GET'])
 def edit():
     person = Professor.query.get_or_404(current_user.get_id())
-    if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-    return render_template('professor/edit/edit.html', person=person)
+    form = EditProfessorForm()
+    if form.is_submitted():
+        filename = secure_filename(form.photo.data.filename)
+        photo = 'static/user_' + str(person.id) + '_' + filename
+        form.photo.data.save(photo)
+        person.photo = 'user_' + str(person.id) + '_' + filename
+        db.session.add(person)
+        db.session.commit()
+    return render_template('professor/edit/edit.html', form=form)

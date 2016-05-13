@@ -1,11 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-<div id="page">
-    <div style="float: left;">
-        <div id="photo"><img width="260" height="300" src="https://pp.vk.me/c627824/v627824438/53c95/Gz80QdP_NHc.jpg">
+<div style="order:solid 1px red;">
+    <div id="sidebar-wrapper">
+            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                        Персональная страница</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
+                </li>
+                <li>
+                    <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i
+                            class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
+                </li>
+            </ul>
+        </div>
+    <div style="border:solid 1px red; float: left;">
+        <div id="photo"><img src="{{ url_for('static', filename=person.photo) }}">
         </div>
         <div id="button">load</div>
     </div>
+    <a href="{{ url_for('professor.edit') }}">edit</a>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">Фамилия:</div>
