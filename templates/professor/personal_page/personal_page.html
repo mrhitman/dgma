@@ -1,52 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-<div style="order:solid 1px red;">
-    <div id="sidebar-wrapper">
-            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
-                        Персональная страница</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
-                </li>
-                <li>
-                    <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i
-                            class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
-                </li>
-                <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
-                </li>
-            </ul>
-        </div>
-    <div style="border:solid 1px red; float: left;">
-        <div id="photo"><img src="{{ url_for('static', filename=person.photo) }}">
-        </div>
-        <div id="button">load</div>
+<div style="float: left;">
+    <div id="photo"><img src="{{ url_for('static', filename=person.photo) }}">
     </div>
-    <a href="{{ url_for('professor.edit') }}">edit</a>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4">Фамилия:</div>
-            <div class="col-md-4">{{ person.user.second_name }}</div>
-            <div class="col-md-4">Имя:</div>
-            <div class="col-md-4">{{ person.user.name }}</div>
-            <div class="col-md-4">Отчество:</div>
-            <div class="col-md-4">{{ person.user.middle_name }}</div>
-            <div class="col-md-4">Дата рождения:</div>
-            <div class="col-md-4">{{ person.user.birthday.strftime('%Y %m %d') }}</div>
-            <div class="col-md-4">Кафедра:</div>
-            <div class="col-md-4">{{ person.facility }}</div>
-            <div class="col-md-4">Должность:</div>
-            <div class="col-md-4">{{ person.post }}</div>
-            <div class="col-md-4">Ученое звание:</div>
-            <div class="col-md-4">{{ person.rank }}</div>
-            <div class="col-md-4">Ученая степень:</div>
-            <div class="col-md-4">{{ person.academic_degree }}</div>
-        </div>
+    <div id="button">load</div>
+</div>
+<a href="{{ url_for('professor.edit') }}">edit</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">Фамилия:</div>
+        <div class="col-md-4">{{ person.user.second_name }}</div>
+        <div class="col-md-4">Имя:</div>
+        <div class="col-md-4">{{ person.user.name }}</div>
+        <div class="col-md-4">Отчество:</div>
+        <div class="col-md-4">{{ person.user.middle_name }}</div>
+        <div class="col-md-4">Дата рождения:</div>
+        <div class="col-md-4">{{ person.user.birthday.strftime('%Y %m %d') }}</div>
+        <div class="col-md-4">Кафедра:</div>
+        <div class="col-md-4">{{ person.facility }}</div>
+        <div class="col-md-4">Должность:</div>
+        <div class="col-md-4">{{ person.post }}</div>
+        <div class="col-md-4">Ученое звание:</div>
+        <div class="col-md-4">{{ person.rank }}</div>
+        <div class="col-md-4">Ученая степень:</div>
+        <div class="col-md-4">{{ person.academic_degree }}</div>
     </div>
 </div>
 {% endblock %}
