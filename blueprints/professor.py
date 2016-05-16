@@ -40,9 +40,9 @@ def edit():
     form.post.data = person.post
     if form.is_submitted():
         filename = secure_filename(form.photo.data.filename)
-        photo = 'static/user_' + str(person.id) + '_' + filename
+        photo = 'static/photos/user_' + str(person.id) + '_' + filename
         form.photo.data.save(photo)
-        person.photo = 'user_' + str(person.id) + '_' + filename
+        person.photo = 'photos/user_' + str(person.id) + '_' + filename
         db.session.add(person)
         db.session.commit()
     return render_template('professor/edit/edit.html', form=form)
