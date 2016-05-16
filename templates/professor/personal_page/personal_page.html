@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+    img {
+        max-width: 300px;
+        max-height: 350px;
+    }
+</style>
 <div style="float: left;">
     <div id="photo"><img src="{{ url_for('static', filename=person.photo) }}">
     </div>
