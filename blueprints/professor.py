@@ -10,6 +10,10 @@ from models.professor import Professor
 professor = Blueprint('professor', __name__, template_folder='templates')
 
 
+@professor.route('/index')
+def index():
+    return render_template('professor/index/index.html')
+
 @login_required
 @professor.route('/personal_page')
 def personal_page():

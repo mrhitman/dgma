@@ -18,4 +18,4 @@ app.register_blueprint(site.site)
 app.register_blueprint(professor.professor)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=9000)

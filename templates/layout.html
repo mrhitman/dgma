@@ -23,65 +23,54 @@
 </style>
 {% endblock %}
 {% block body %}
-<h1><a href="#">ДГМА</a></h1>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="{{ url_for('site.index') }}" class="navbar-brand">Главная</a>
+    <h1><a href="#">ДГМА</a></h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('site.index') }}" class="navbar-brand">Электронный деканат</a></li>
+                    {% if not current_user.is_authenticated %}
+                        <li><a href="{{ url_for('site.login') }}">Логин</a></li>
+                        <li><a href="{{ url_for('site.register') }}">Регистрация</a></li>
+                    {% else %}
+                        <li><a href="#">Преподаватели</a></li>
+                        <li><a href="#">Студенты</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                {% if not current_user.is_authenticated %}
-                    <li><a href="{{ url_for('site.login') }}">Логин</a></li>
-                    <li><a href="{{ url_for('site.register') }}">Регистрация</a></li>
-                {% else %}
-                    <li><a href="#">Электронный деканат</a></li>
-                    <li><a href="#">Преподаватели</a></li>
-                    <li><a href="#">Студенты</a></li>
-                {% endif %}
-            </ul>
-        </div>
+    </nav>
+    <div id="wrapper">
+        {% block leftmenu %}
+            {% if current_user.is_authenticated %}
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                        <li>
+                            <a href="{{ url_for('professor.personal_page') }}">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>Персональная страница</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('professor.edit') }}">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('site.logout') }}">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        {% endblock %}
+        {% block content %}{% endblock %}
     </div>
-</nav>
-<div id="wrapper">
-    {% if current_user.is_authenticated %}
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <li>
-                <a href="{{ url_for('professor.personal_page') }}">
-                    <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>Персональная страница</a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
-            </li>
-            <li>
-                <a href="{{ url_for('professor.edit') }}">
-                    <span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
-            </li>
-            <li>
-                <a href="{{ url_for('site.logout') }}">
-                    <span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
-            </li>
-        </ul>
+    <div id="copyright" class="container">
     </div>
-    {% endif %}
-    {% block content %}
-
-
-    {% endblock %}
-</div>
-<div id="copyright" class="container">
-</div>
 {% endblock %}
