@@ -28,6 +28,16 @@ def personal_page():
 def edit():
     person = Professor.query.get_or_404(current_user.get_id())
     form = EditProfessorForm()
+    form.name.data = person.user.name
+    form.second_name.data = person.user.second_name
+    form.middle_name.data = person.user.middle_name
+    form.birthday.data = person.user.birthday
+    form.email.data = person.user.email
+    form.facility.data = person.facility
+    form.rank.data = person.rank
+    form.academic_degree.data = person.academic_degree
+    form.photo.data = person.photo
+    form.post.data = person.post
     if form.is_submitted():
         filename = secure_filename(form.photo.data.filename)
         photo = 'static/user_' + str(person.id) + '_' + filename
