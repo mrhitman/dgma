@@ -4,4 +4,3 @@ flask-bootstrap
 flask-login
 wtforms
 flask-wtf
-
