@@ -15,7 +15,7 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sitebar.css') }}">
 <style>
-     #page {
+    #page {
         height: 80%;
         width: 1000px;
         margin: 0 auto;
@@ -51,21 +51,25 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li>
-                <a href="{{ url_for('professor.personal_page') }}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                <a href="{{ url_for('professor.personal_page') }}"><span class="fa-stack fa-lg pull-left"><i
+                        class="fa fa-dashboard fa-stack-1x "></i></span>
                     Персональная страница</a>
             </li>
             <li>
-                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
+                <a href="#"><span class="fa-stack fa-lg pull-left"><i
+                        class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
             </li>
             <li>
-                <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
+                <a href="#"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный
+                    лист</a>
             </li>
             <li>
                 <a href="{{ url_for('professor.edit') }}"><span class="fa-stack fa-lg pull-left"><i
                         class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
             </li>
             <li>
-                <a href="{{ url_for('site.logout') }}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
+                <a href="{{ url_for('site.logout') }}"><span class="fa-stack fa-lg pull-left"><i
+                        class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
             </li>
         </ul>
     </div>

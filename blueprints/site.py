@@ -35,6 +35,7 @@ def login():
         return redirect(url_for('professor.personal_page'))
     return render_template('site/login/login.html', form=form)
 
+
 @login_required
 @site.route('/logout')
 def logout():

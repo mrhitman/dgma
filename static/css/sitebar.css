@@ -26,6 +26,7 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
+
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
@@ -36,16 +37,20 @@
     width: 100%;
     overflow-x: hidden;
 }
-.xyz{
+
+.xyz {
     min-width: 360px;
 }
+
 #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0px;
 }
-.fixed-brand{
+
+.fixed-brand {
     width: auto;
 }
+
 /* Sidebar Styles */
 
 .sidebar-nav {
@@ -73,7 +78,7 @@
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #000;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-left: red 2px solid;
 }
 
@@ -96,17 +101,20 @@
     color: #fff;
     background: none;
 }
-.no-margin{
-    margin:0;
+
+.no-margin {
+    margin: 0;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
     #wrapper {
         padding-left: 250px;
     }
-    .fixed-brand{
+
+    .fixed-brand {
         width: 250px;
     }
+
     #wrapper.toggled {
         padding-left: 0;
     }
@@ -118,13 +126,14 @@
     #wrapper.toggled #sidebar-wrapper {
         width: 250px;
     }
+
     #wrapper.toggled-2 #sidebar-wrapper {
         width: 50px;
     }
+
     #wrapper.toggled-2 #sidebar-wrapper:hover {
         width: 250px;
     }
-
 
     #page-content-wrapper {
         padding: 20px;
@@ -140,6 +149,7 @@
         margin-right: 0;
         padding-left: 250px;
     }
+
     #wrapper.toggled-2 #page-content-wrapper {
         position: relative;
         margin-right: 0;
