@@ -7,11 +7,14 @@
     }
 </style>
 <div style="float: left;">
-    <div id="photo"><img src="{{ url_for('static', filename=person.photo) }}">
+    <div id="photo">
+        {% if person.photo %}
+            <img src="{{ url_for('static', filename=person.photo) }}">
+        {% else %}
+            <a href="{{ url_for('professor.edit') }}"><img src="{{ url_for('static', filename='no-profile-img.gif') }}"></a>
+        {% endif %}
     </div>
-    <div id="button">load</div>
 </div>
-<a href="{{ url_for('professor.edit') }}">edit</a>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">Фамилия:</div>
