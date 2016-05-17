@@ -12,7 +12,7 @@
             {% if person.photo %}
                 <img src="{{ url_for('static', filename=person.photo) }}">
             {% else %}
-                <img src="{{ url_for('static', filename='no-profile-img.gif') }}">
+                <img src="{{ url_for('static', filename='photos/no-profile-img.gif') }}">
             {% endif %}
         </a>
     </div>
