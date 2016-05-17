@@ -3,10 +3,12 @@ from flask_login import login_user, logout_user, login_required
 
 from database import db
 from forms.login import LoginForm
-from forms.registration import RegistrationForm
 from login_manger import login_manager
 from models.professor import Professor
 from models.user import User
+from models.facility import Facility
+from models.cathedra import Cathedra
+
 
 site = Blueprint('site', __name__, template_folder='templates')
 
@@ -44,6 +46,7 @@ def logout():
 
 @site.route('/register', methods=['GET', 'POST'])
 def register():
+    from forms.registration import RegistrationForm
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User()
@@ -57,7 +60,7 @@ def register():
         professor.post = form.post.data
         professor.academic_degree = form.academic_degree.data
         professor.rank = form.rank.data
-        professor.facility = form.facility.data
+        professor.cathedra = form.cathedra.data
         professor.user = user
         db.session.add(user)
         db.session.add(professor)

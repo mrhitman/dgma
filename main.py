@@ -1,8 +1,8 @@
-from flask import Flask, send_from_directory
+from flask import Flask
 from flask_bootstrap import Bootstrap
 
 from config import Config
-from blueprints import site, professor
+from blueprints import site, professor, facility
 from database import db
 from login_manger import login_manager
 
@@ -16,6 +16,7 @@ Bootstrap(app)
 
 app.register_blueprint(site.site)
 app.register_blueprint(professor.professor)
+app.register_blueprint(facility.facility)
 
 if __name__ == "__main__":
     app.run(port=9000)

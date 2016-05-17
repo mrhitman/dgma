@@ -3,7 +3,7 @@ from database import db
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
     second_name = db.Column(db.String(50))
     middle_name = db.Column(db.String(50))
@@ -17,14 +17,13 @@ class User(db.Model):
     def is_active(self):
         return True
 
-
-def is_anonymous(self):
-    return False
-
-
-def get_id(self):
-    return unicode(self.id)
+    def is_anonymous(self):
+        return False
 
 
-def __repr__(self):
-    return '<User %r %r %r>' % (self.name, self.second_name, self.middle_name)
+    def get_id(self):
+        return unicode(self.id)
+
+
+    def __repr__(self):
+        return '<User %r %r %r>' % (self.name, self.second_name, self.middle_name)
