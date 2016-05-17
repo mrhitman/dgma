@@ -4,11 +4,11 @@ from database import db
 
 
 class Professor(db.Model):
-    __bind_key__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'))
     user = relationship("User")
-    facility = db.Column(db.String(50))
+    # facility_id = db.Column(db.Integer, ForeignKey('facility.id'))
+    # facility = relationship("Facility")
     post = db.Column(db.String(50))
     academic_degree = db.Column(db.String(50))
     rank = db.Column(db.String(50))

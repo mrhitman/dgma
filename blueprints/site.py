@@ -1,9 +1,8 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, send_from_directory, app
+from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user, login_required
 
 from database import db
 from forms.login import LoginForm
-
 from forms.registration import RegistrationForm
 from login_manger import login_manager
 from models.professor import Professor
@@ -66,11 +65,3 @@ def register():
         flash('Thanks for registering')
         return redirect(url_for('site.login'))
     return render_template('site/register/register.html', form=form)
-
-
-@site.route('/init')
-def init():
-    from main import db
-
-    db.create_all()
-    return ''
