@@ -6,9 +6,6 @@ from forms.login import LoginForm
 from login_manger import login_manager
 from models.professor import Professor
 from models.user import User
-from models.facility import Facility
-from models.cathedra import Cathedra
-
 
 site = Blueprint('site', __name__, template_folder='templates')
 
@@ -60,11 +57,15 @@ def register():
         professor.post = form.post.data
         professor.academic_degree = form.academic_degree.data
         professor.rank = form.rank.data
-        professor.cathedra = form.cathedra.data
+        professor.cathedra_id = form.cathedra._formdata
         professor.user = user
         db.session.add(user)
         db.session.add(professor)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception:
+            flash('Problem with registering')
+            return redirect(url_for('site.register'))
         flash('Thanks for registering')
         return redirect(url_for('site.login'))
     return render_template('site/register/register.html', form=form)

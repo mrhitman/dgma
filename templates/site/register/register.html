@@ -3,6 +3,15 @@
 {% block content %}
 {% from "formhelpers.html" import render_field %}
 <div id="page">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     <form method=post action="{{ url_for('site.register') }}" class="form-horizontal">
         {{ form.hidden_tag() }}
         {{ render_field(form.name) }}
