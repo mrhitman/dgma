@@ -1,6 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 <div id="page">
-
+    <div>
+        {% for facility in faculties %}
+            <div>
+                <img src="{{  url_for('static', filename=facility.image) }}" style="max-height: 75px; max-width: 75px; margin: 10px">
+                <a href="{{ url_for('facility.cathedras', id=facility.id) }}">{{ facility.short_name }}</a>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

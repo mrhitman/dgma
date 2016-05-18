@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    img {
+        max-height: 75px;
+        max-width: 75px;
+        margin: 10px;
+    }
+</style>
+<div id="page">
+    <div>
+        {% for cathedra in cathedras %}
+        <div>
+            {% if cathedra.image %}
+                <img src="{{  url_for('static', filename=cathedra.image) }}">
+            {% endif %}
+            {{ cathedra.short_name }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
