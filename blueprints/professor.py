@@ -14,6 +14,7 @@ professor = Blueprint('professor', __name__, template_folder='templates')
 def index():
     return render_template('professor/index/index.html')
 
+
 @login_required
 @professor.route('/personal_page')
 def personal_page():
@@ -40,7 +41,7 @@ def edit():
         form.middle_name.data = person.user.middle_name
         form.birthday.data = person.user.birthday
         form.email.data = person.user.email
-        form.facility.data = person.facility
+        # form.cathedra.data = person.facility
         form.rank.data = person.rank
         form.academic_degree.data = person.academic_degree
         form.post.data = person.post

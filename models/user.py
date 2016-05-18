@@ -1,4 +1,5 @@
 from flask.ext.login import unicode
+
 from database import db
 
 
@@ -20,10 +21,8 @@ class User(db.Model):
     def is_anonymous(self):
         return False
 
-
     def get_id(self):
         return unicode(self.id)
-
 
     def __repr__(self):
         return '<User %r %r %r>' % (self.name, self.second_name, self.middle_name)
