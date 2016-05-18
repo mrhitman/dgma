@@ -4,6 +4,10 @@ from sqlalchemy.orm import relationship
 from database import db
 
 
+def possible_cathedras():
+    return Cathedra.query
+
+
 class Cathedra(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50))
