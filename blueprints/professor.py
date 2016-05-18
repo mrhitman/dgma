@@ -1,3 +1,4 @@
+from genericpath import isfile
 from flask import Blueprint, render_template, url_for
 from flask.ext.login import current_user
 from flask_login import login_required
@@ -8,11 +9,6 @@ from forms.edit_professor import EditProfessorForm
 from models.professor import Professor
 
 professor = Blueprint('professor', __name__, template_folder='templates')
-
-
-@professor.route('/index')
-def index():
-    return render_template('professor/index/index.html')
 
 
 @login_required
@@ -29,9 +25,18 @@ def edit():
     form = EditProfessorForm()
     if form.is_submitted():
         filename = secure_filename(form.photo.data.filename)
-        photo = 'static/photos/user_' + str(person.id) + '_' + filename
-        form.photo.data.save(photo)
-        person.photo = 'photos/user_' + str(person.id) + '_' + filename
+        if isfile(filename):
+            photo = 'static/photos/user_' + str(person.id) + '_' + filename
+            form.photo.data.save(photo)
+            person.photo = 'photos/user_' + str(person.id) + '_' + filename
+        person.user.name = form.name.data
+        person.user.second_name = form.second_name.data
+        person.user.middle_name = form.middle_name.data
+        person.user.birthday = form.birthday.data
+        person.cathedra_id = form.cathedra._formdata
+        person.rank = form.rank.data
+        person.post = form.post.data
+        person.academic_degree = form.academic_degree.data
         db.session.add(person)
         db.session.commit()
         return redirect(url_for('professor.personal_page'))
@@ -41,7 +46,7 @@ def edit():
         form.middle_name.data = person.user.middle_name
         form.birthday.data = person.user.birthday
         form.email.data = person.user.email
-        # form.cathedra.data = person.facility
+        form.cathedra.data = person.cathedra_id
         form.rank.data = person.rank
         form.academic_degree.data = person.academic_degree
         form.post.data = person.post
