@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    img {
+        max-height: 75px;
+        max-width: 75px;
+        margin: 10px;
+    }
+</style>
+<div id="page">
+    <div>
+        {% for professor in professors %}
+        <div>
+            {% if professor.photo %}
+                <img src="{{  url_for('static', filename=professor.photo) }}">
+            {% else %}
+                <img src="{{ url_for('static', filename='photos/no-profile-img.gif') }}">
+            {% endif %}
+            {{professor.rank}}, {{ professor.user.name }} {{ professor.user.second_name }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

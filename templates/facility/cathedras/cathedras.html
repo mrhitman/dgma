@@ -14,7 +14,7 @@
             {% if cathedra.image %}
                 <img src="{{  url_for('static', filename=cathedra.image) }}">
             {% endif %}
-            {{ cathedra.short_name }}
+            <a href="{{ url_for('facility.professors', id=cathedra.id) }}">{{ cathedra.short_name }}</a>
         </div>
         {% endfor %}
     </div>
