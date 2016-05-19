@@ -57,7 +57,7 @@ def register():
         professor.post = form.post.data
         professor.academic_degree = form.academic_degree.data
         professor.rank = form.rank.data
-        professor.cathedra_id = form.cathedra._formdata
+        professor.cathedra_id = form.cathedra.data.id
         professor.user = user
         db.session.add(user)
         db.session.add(professor)

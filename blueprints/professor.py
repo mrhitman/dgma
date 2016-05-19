@@ -34,7 +34,7 @@ def edit():
         person.user.second_name = form.second_name.data
         person.user.middle_name = form.middle_name.data
         person.user.birthday = form.birthday.data
-        person.cathedra_id = form.cathedra._formdata
+        person.cathedra_id = form.cathedra.data.id
         person.rank = form.rank.data
         person.post = form.post.data
         person.academic_degree = form.academic_degree.data
