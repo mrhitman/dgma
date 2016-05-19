@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 
+from blueprints import site, professor, facility
 from config import Config
 from database import db
 from login_manger import login_manager
-from blueprints import site, professor, facility
 
 app = Flask(__name__)
 app.config.from_object(Config)

@@ -1,20 +1,23 @@
-import click as click
+from flask import Flask
+from flask.ext.migrate import Migrate, MigrateCommand
+from flask.ext.script import Manager
+from models.facility import Facility
+from models.load_page import LoadPage
+from models.cathedra import Cathedra
+from models.load_page_work_types import LoadPageWorkTypes
+from models.professor import Professor
 
+from config import Config
 from database import db
-from main import app
 
+app = Flask(__name__)
+app.config.from_object(Config)
 
-@click.group()
-def cli():
-    pass
+db.init_app(app)
 
+migrate = Migrate(app, db)
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
-@click.command()
-def initdb():
-    with app.app_context():
-        db.create_all()
-
-
-cli.add_command(initdb)
-
-cli()
+if __name__ == "__main__":
+    manager.run()
