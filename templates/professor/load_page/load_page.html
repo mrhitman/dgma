@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="page">
+    {% if load_page|length == 0 %}
+    Нагрузочный лист пуст
+    {% else %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Вид роботи</th>
+            <th>Теор. вартість,бал.</th>
+            <th>Факт, балів</th>
+            <th>Кількість, шт.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in load_page%}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ i.work_type.name }}</td>
+            <td>{{ i.work_type.mark }}</td>
+            <td>{{ i.mark }}</td>
+            <td>{{ i.count }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <a href="{{ url_for('professor.add_load_page') }}">Добавить</a>
+</div>
+{% endblock %}

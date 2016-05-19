@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="page">
+    {% from "formhelpers.html" import render_field %}
+    <form method=post action="{{ url_for('professor.add_load_page') }}" class="form-horizontal">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.work_type) }}
+        {{ render_field(form.count) }}
+        {{ render_field(form.mark) }}
+        <p><input type=submit value=Add class="btn btn-default">
+    </form>
+</div>
+{% endblock %}
