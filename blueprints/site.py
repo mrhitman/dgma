@@ -30,7 +30,7 @@ def login():
             flash('No such user')
             return render_template('site/login/login.html', form=form)
         login_user(user)
-        return redirect(url_for('professor.personal_page'))
+        return redirect(url_for('professor_page.personal_page'))
     return render_template('site/login/login.html', form=form)
 
 
