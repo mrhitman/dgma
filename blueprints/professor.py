@@ -40,7 +40,7 @@ def edit():
         person.academic_degree = form.academic_degree.data
         db.session.add(person)
         db.session.commit()
-        return redirect(url_for('professor.personal_page'))
+        return redirect(url_for('professor_page.personal_page'))
     else:
         form.name.data = person.user.name
         form.second_name.data = person.user.second_name
@@ -74,5 +74,5 @@ def add_load_page():
         page.user_id = current_user.get_id()
         db.session.add(page)
         db.session.commit()
-        return redirect(url_for('professor.load_page'))
+        return redirect(url_for('professor_page.load_page'))
     return render_template('professor/load_page/add_load_page.html', form=form)
