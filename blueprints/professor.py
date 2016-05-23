@@ -9,7 +9,7 @@ from forms.load_list import LoadListAddForm
 from models.load_page import LoadPage
 from models.professor import Professor
 
-professor = Blueprint('professor', __name__, template_folder='templates')
+professor = Blueprint('professor_page', __name__, template_folder='templates')
 
 
 @login_required

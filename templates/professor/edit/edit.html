@@ -2,7 +2,7 @@
 {% block content %}
 <div id="page">
     {% from "formhelpers.html" import render_field %}
-    <form method=post action="{{ url_for('professor.edit') }}" class="form-horizontal" enctype="multipart/form-data">
+    <form method=post action="{{ url_for('professor_page.edit') }}" class="form-horizontal" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         {{ render_field(form.name) }}
         {{ render_field(form.second_name) }}

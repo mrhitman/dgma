@@ -5,3 +5,4 @@ flask-login
 wtforms
 flask-wtf
 flask-migrate
+flask-admin

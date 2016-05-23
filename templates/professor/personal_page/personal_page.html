@@ -9,7 +9,7 @@
 </style>
 <div style="float: left;">
     <div id="photo">
-        <a href="{{ url_for('professor.edit') }}">
+        <a href="{{ url_for('professor_page.edit') }}">
             {% if person.photo %}
                 <img src="{{ url_for('static', filename=person.photo) }}">
             {% else %}
