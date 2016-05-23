@@ -6,6 +6,7 @@ from models.load_page import LoadPage
 from models.cathedra import Cathedra
 from models.load_page_work_types import LoadPageWorkTypes
 from models.professor import Professor
+from models.student import Student
 
 from config import Config
 from database import db
