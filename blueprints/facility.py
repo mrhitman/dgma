@@ -4,7 +4,7 @@ from models.cathedra import Cathedra
 from models.facility import Facility
 from models.professor import Professor
 
-facility = Blueprint('facility', __name__, template_folder='templates')
+facility = Blueprint('facility_page', __name__, template_folder='templates')
 
 
 @facility.route('/facility')

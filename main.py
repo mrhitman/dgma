@@ -7,7 +7,7 @@ from blueprints import site, professor, facility
 from config import Config
 from database import db
 from login_manger import login_manager
-from models import User, Student, Professor
+from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkTypes
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,9 +22,13 @@ app.register_blueprint(professor.professor)
 app.register_blueprint(facility.facility)
 
 admin = Admin(app, name='microblog', template_mode='bootstrap3')
+admin.add_view(ModelView(Facility, db.session))
+admin.add_view(ModelView(Cathedra, db.session))
+admin.add_view(ModelView(LoadPageWorkTypes, db.session))
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Student, db.session))
 admin.add_view(ModelView(Professor, db.session))
+admin.add_view(ModelView(LoadPage, db.session))
 
 if __name__ == "__main__":
     app.run(port=9000)
