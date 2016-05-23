@@ -18,13 +18,21 @@ def upgrade():
     op.create_table('student',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('cathedra_id', sa.Integer(), nullable=True),
+    sa.Column('group_id', sa.Integer(), nullable=True),
     sa.Column('photo', sa.String(length=100), nullable=True),
-    sa.ForeignKeyConstraint(['cathedra_id'], ['cathedra.id'], ),
+    sa.ForeignKeyConstraint(['group_id'], ['group.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('group',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=True),
+    sa.Column('cathedra_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['cathedra_id'], ['cathedra.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
 
 def downgrade():
     op.drop_table('student')
+    op.drop_table('group')

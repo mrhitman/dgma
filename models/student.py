@@ -8,8 +8,8 @@ class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'))
     user = relationship("User")
-    cathedra_id = db.Column(db.Integer, ForeignKey('cathedra.id'))
-    cathedra = relationship("Cathedra")
+    group_id = db.Column(db.Integer, ForeignKey('group.id'))
+    group = relationship("Group")
     photo = db.Column(db.String(100))
 
     def __repr__(self):

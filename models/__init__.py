@@ -5,3 +5,4 @@ from models.user import User
 from models.student import Student
 from models.load_page import LoadPage
 from models.load_page_work_types import LoadPageWorkTypes
+from models.group import Group
