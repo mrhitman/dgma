@@ -16,7 +16,10 @@
             {% else %}
                 <img src="{{ url_for('static', filename='photos/no-profile-img.gif') }}">
             {% endif %}
+            <a href="{{ url_for('professor_page.personal_guest_page', id=professor.id) }}">
             {{professor.rank}}, {{ professor.user.name }} {{ professor.user.second_name }}
+            </a>
+
         </div>
         {% endfor %}
     </div>

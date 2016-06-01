@@ -22,6 +22,13 @@ def personal_page():
 
 
 @login_required
+@professor.route('/personal_guest_page/<int:id>')
+def personal_guest_page(id):
+    person = Professor.query.get_or_404(id)
+    return render_template('professor/personal_page/personal_page.html', person=person)
+
+
+@login_required
 @professor.route('/edit', methods=['POST', 'GET'])
 def edit():
     person = Professor.query.get_or_404(current_user.get_id())
