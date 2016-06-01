@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename, redirect
 from database import db
 from forms.edit_professor import EditProfessorForm
 from forms.load_list import LoadListAddForm
-from forms.load_list_root import LoadListRootAddForm
+from forms.load_list_root import LoadListRootAddForm, LoadListRootSearchForm
 from models.load_page import LoadPage
 from models.load_page_root import LoadPageRoot
 from models.professor import Professor
@@ -72,10 +72,20 @@ def load_page(id):
 
 
 @login_required
-@professor.route('/load_page_root')
+@professor.route('/load_page_root', methods=['GET', 'POST'])
 def load_page_root():
-    page = LoadPageRoot.query.filter_by(user_id=current_user.get_id()).all()
-    return render_template('professor/load_page/load_page_root.html', load_page=page)
+    search_form = LoadListRootSearchForm()
+    if search_form.is_submitted():
+        page = LoadPageRoot.query.filter_by(user_id = current_user.get_id())
+        if search_form.start_period.data:
+            page = page.filter(LoadPageRoot.start_period >= search_form.start_period.data)
+        if search_form.end_period.data:
+            page = page.filter(LoadPageRoot.end_period <= search_form.end_period.data)
+
+        return render_template('professor/load_page/load_page_root.html', load_page=page.all(), form=search_form)
+    else:
+        page = LoadPageRoot.query.filter_by(user_id=current_user.get_id()).all()
+    return render_template('professor/load_page/load_page_root.html', load_page=page, form=search_form)
 
 
 @login_required

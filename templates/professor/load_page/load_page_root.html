@@ -1,6 +1,14 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div id="page">
+    {% from "formhelpers.html" import render_field %}
+    <form method=post action="{{ url_for('professor_page.load_page_root') }}" class="form-inline">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.start_period) }}
+        {{ render_field(form.end_period) }}
+        <input type=submit value=Search class="btn btn-default">
+    </form>
+
     {% if load_page|length == 0 %}
     Нет нагрузочных листов
     {% else %}
