@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="page">
+    {% if load_page|length == 0 %}
+    Нет нагрузочных листов
+    {% else %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Название</th>
+            <th>За период (начало)</th>
+            <th>За период (конец)</th>
+            <th>Управление</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in load_page%}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.start_period }}</td>
+            <td>{{ i.end_period }}</td>
+            <td><a href="{{ url_for('professor_page.load_page', id=i.id) }}">Редактировать</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('professor_page.add_load_page_root') }}">Новый загрузочный лист</a>
+</div>
+{% endblock %}

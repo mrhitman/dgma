@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div id="page">
+    <a href="{{ url_for('professor_page.load_page_root', id=load_page_id) }}"><< Вернутся на лист</a>
     {% if load_page|length == 0 %}
     Нагрузочный лист пуст
     {% else %}
@@ -27,6 +28,7 @@
         </tbody>
     </table>
     {% endif %}
-    <a href="{{ url_for('professor_page.add_load_page') }}">Добавить</a>
+    <br>
+    <a href="{{ url_for('professor_page.add_load_page', id=load_page_id) }}">Добавить элемент</a>
 </div>
 {% endblock %}

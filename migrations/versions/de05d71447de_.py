@@ -56,8 +56,10 @@ def upgrade():
     sa.Column('count', sa.Integer(), nullable=True),
     sa.Column('mark', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('load_page_root_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.ForeignKeyConstraint(['work_type_id'], ['load_page_work_types.id'], ),
+    sa.ForeignKeyConstraint(['load_page_root_id'], ['load_page_root.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('professor',

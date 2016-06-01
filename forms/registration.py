@@ -1,7 +1,8 @@
 from flask.ext.wtf import Form
-from wtforms import PasswordField, validators, StringField, DateField
+from wtforms import PasswordField, validators, StringField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from models.cathedra import possible_cathedras
+from wtforms.fields.html5 import DateField
 
 
 class RegistrationForm(Form):

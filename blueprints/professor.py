@@ -6,7 +6,9 @@ from werkzeug.utils import secure_filename, redirect
 from database import db
 from forms.edit_professor import EditProfessorForm
 from forms.load_list import LoadListAddForm
+from forms.load_list_root import LoadListRootAddForm
 from models.load_page import LoadPage
+from models.load_page_root import LoadPageRoot
 from models.professor import Professor
 
 professor = Blueprint('professor_page', __name__, template_folder='templates')
@@ -56,15 +58,38 @@ def edit():
 
 
 @login_required
-@professor.route('/load_page')
-def load_page():
-    page = LoadPage.query.filter_by(user_id=current_user.get_id()).all()
-    return render_template('professor/load_page/load_page.html', load_page=page)
+@professor.route('/load_page/<int:id>')
+def load_page(id):
+    page = LoadPage.query.filter_by(user_id=current_user.get_id(), load_page_root_id=id).all()
+    return render_template('professor/load_page/load_page.html', load_page=page, load_page_id=id)
 
 
 @login_required
-@professor.route('/add_load_page', methods=['GET', 'POST'])
-def add_load_page():
+@professor.route('/load_page_root')
+def load_page_root():
+    page = LoadPageRoot.query.filter_by(user_id=current_user.get_id()).all()
+    return render_template('professor/load_page/load_page_root.html', load_page=page)
+
+
+@login_required
+@professor.route('/add_load_page_root', methods=['GET', 'POST'])
+def add_load_page_root():
+    form = LoadListRootAddForm()
+    if form.validate_on_submit():
+        page_root = LoadPageRoot()
+        page_root.name = form.name.data
+        page_root.start_period = form.start_period.data
+        page_root.end_period = form.end_period.data
+        page_root.user_id = current_user.get_id()
+        db.session.add(page_root)
+        db.session.commit()
+        return redirect(url_for('professor_page.load_page_root'))
+    return render_template('professor/load_page/add_load_page_root.html', form=form)
+
+
+@login_required
+@professor.route('/add_load_page/<int:id>', methods=['GET', 'POST'])
+def add_load_page(id):
     form = LoadListAddForm()
     if form.validate_on_submit():
         page = LoadPage()
@@ -72,7 +97,8 @@ def add_load_page():
         page.mark = form.mark.data
         page.work_type_id = form.work_type.data.id
         page.user_id = current_user.get_id()
+        page.load_page_root_id = id
         db.session.add(page)
         db.session.commit()
-        return redirect(url_for('professor_page.load_page'))
-    return render_template('professor/load_page/add_load_page.html', form=form)
+        return redirect(url_for('professor_page.load_page', id=id))
+    return render_template('professor/load_page/add_load_page.html', form=form, load_page_id=id)

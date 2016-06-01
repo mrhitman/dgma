@@ -12,6 +12,7 @@ class LoadPage(db.Model):
     count = db.Column(db.Integer)
     mark = db.Column(db.Integer)
     user_id = db.Column(db.Integer, ForeignKey('user.id'))
+    load_page_root_id = db.Column(db.Integer, ForeignKey('load_page_root.id'))
 
     def __repr__(self):
         return '<LoadPage %r>' % self.id
