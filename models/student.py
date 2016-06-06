@@ -2,7 +2,6 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import db
-from models.discipline import Discipline
 from models.student_mark import StudentMark
 
 
