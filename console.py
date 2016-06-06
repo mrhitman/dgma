@@ -7,6 +7,8 @@ from models.cathedra import Cathedra
 from models.load_page_work_types import LoadPageWorkTypes
 from models.professor import Professor
 from models.student import Student
+from models.student_mark import StudentMark
+from models.discipline import Discipline
 
 from config import Config
 from database import db

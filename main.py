@@ -3,7 +3,7 @@ from flask.ext.admin import Admin
 from flask.ext.admin.contrib.sqla import ModelView
 from flask_bootstrap import Bootstrap
 
-from blueprints import site, professor, facility
+from blueprints import site, professor, facility, student
 from config import Config
 from database import db
 from login_manger import login_manager
@@ -19,6 +19,7 @@ Bootstrap(app)
 
 app.register_blueprint(site.site)
 app.register_blueprint(professor.professor)
+app.register_blueprint(student.student)
 app.register_blueprint(facility.facility)
 
 admin = Admin(app, name='dgma admin', template_mode='bootstrap3')

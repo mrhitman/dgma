@@ -2,6 +2,8 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import db
+from models.discipline import Discipline
+from models.student_mark import StudentMark
 
 
 class Student(db.Model):
@@ -14,3 +16,9 @@ class Student(db.Model):
 
     def __repr__(self):
         return '<Student %r %r %r>' % (self.user.name, self.user.second_name, self.user.middle_name)
+
+    def get_avg_mark(self):
+        marks = StudentMark.query.all()
+        if len(marks) == 0:
+            return 0
+        return sum([m.mark for m in marks]) / len(marks)

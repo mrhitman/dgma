@@ -34,7 +34,7 @@
                         <li><a href="{{ url_for('site.register') }}">Регистрация</a></li>
                     {% else %}
                         <li><a href="#">Преподаватели</a></li>
-                        <li><a href="#">Студенты</a></li>
+                        <li><a href="{{ url_for('student_page.student_all') }}">Студенты</a></li>
                     {% endif %}
                 </ul>
             </div>
