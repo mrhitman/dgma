@@ -44,6 +44,7 @@ def logout():
 @site.route('/register', methods=['GET', 'POST'])
 def register():
     from forms.registration import RegistrationForm
+
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User()

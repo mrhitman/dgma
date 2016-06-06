@@ -1,3 +1,4 @@
+from sqlalchemy import ForeignKey
 from database import db
 
 
@@ -10,6 +11,7 @@ class LoadPageWorkTypes(db.Model):
     name = db.Column(db.String(25))
     info = db.Column(db.String(30))
     mark = db.Column(db.Integer)
+    type_id = db.Column(db.Integer, ForeignKey('load_page_type.id'))
 
     def __repr__(self):
         return '<LoadPage %r>' % self.id

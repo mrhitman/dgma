@@ -23,11 +23,18 @@ def upgrade():
     sa.Column('image', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('load_page_type',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('load_page_work_types',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=25), nullable=True),
     sa.Column('info', sa.String(length=30), nullable=True),
     sa.Column('mark', sa.Integer(), nullable=True),
+    sa.Column('type_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['type_id'], ['load_page_type.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
