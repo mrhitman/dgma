@@ -28,6 +28,8 @@ def upgrade():
     sa.Column('name', sa.String(length=25), nullable=True),
     sa.Column('info', sa.String(length=30), nullable=True),
     sa.Column('mark', sa.Integer(), nullable=True),
+    sa.Column('subtype_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['subtype_id'], ['load_page_subtype.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
@@ -74,6 +76,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('load_page_subtype',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     ### end Alembic commands ###
 
 
@@ -86,4 +93,5 @@ def downgrade():
     op.drop_table('user')
     op.drop_table('load_page_work_types')
     op.drop_table('facility')
+    op.drop_table('load_page_subtype')
     ### end Alembic commands ###

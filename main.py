@@ -7,7 +7,7 @@ from blueprints import site, professor, facility, student
 from config import Config
 from database import db
 from login_manger import login_manager
-from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkTypes, Group
+from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkTypes, LoadPageSubtype, Group
 from models.discipline import Discipline
 from models.student_mark import StudentMark
 

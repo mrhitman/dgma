@@ -6,3 +6,4 @@ from models.student import Student
 from models.load_page import LoadPage
 from models.load_page_work_types import LoadPageWorkTypes
 from models.group import Group
+from models.load_page_subtype import LoadPageSubtype

@@ -13,6 +13,7 @@
             <th>Теор. вартість,бал.</th>
             <th>Факт, балів</th>
             <th>Кількість, шт.</th>
+            <th>Тип</th>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
             <td>{{ i.work_type.mark }}</td>
             <td>{{ i.mark }}</td>
             <td>{{ i.count }}</td>
+            <td>{{ i.work_type.subtype.name }}</td>
         </tr>
         {% endfor %}
         </tbody>

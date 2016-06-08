@@ -1,3 +1,6 @@
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+
 from database import db
 
 
@@ -10,6 +13,8 @@ class LoadPageWorkTypes(db.Model):
     name = db.Column(db.String(25))
     info = db.Column(db.String(30))
     mark = db.Column(db.Integer)
+    subtype_id = db.Column(db.Integer, ForeignKey('load_page_subtype.id'))
+    subtype = relationship("LoadPageSubtype")
 
     def __repr__(self):
-        return '<LoadPage %r>' % self.id
+        return '<LoadPageWorkType %r>' % self.name
