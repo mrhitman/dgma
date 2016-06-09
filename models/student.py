@@ -17,7 +17,7 @@ class Student(db.Model):
         return '<Student %r %r %r>' % (self.user.name, self.user.second_name, self.user.middle_name)
 
     def get_avg_mark(self):
-        marks = StudentMark.query.all()
+        marks = StudentMark.query.filter_by(student_id=self.id).all()
         if len(marks) == 0:
             return 0
         return sum([m.mark for m in marks]) / len(marks)
