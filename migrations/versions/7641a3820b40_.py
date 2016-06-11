@@ -16,6 +16,12 @@ import sqlalchemy as sa
 
 def upgrade():
     conn = op.get_bind()
+    conn.execute('''INSERT INTO "main"."load_page_subtype" VALUES (1, 'Учебно-методическая работа');''')
+    conn.execute('''INSERT INTO "main"."load_page_subtype" VALUES (2, 'Организационно-методическая работа');''')
+    conn.execute('''INSERT INTO "main"."load_page_subtype" VALUES (3, 'Научная работа');''')
+    conn.execute('''INSERT INTO "main"."load_page_subtype" VALUES (4, 'Воспитательная работа');''')
+    conn.execute('''INSERT INTO "main"."load_page_subtype" VALUES (5, 'Другие виды работ');''')
+
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (1, 'Читання лекцій, до 50 год.', 'За звітній період', 1, 1);''')
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (2, 'Читання лекцій, до 100 год.', 'За звітній період', 2, 1);''')
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (3, 'Читання лекцій, до 150 год.', 'За звітній період', 3, 1);''')
@@ -33,6 +39,7 @@ def upgrade():
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (15, 'за кращу методрозробку: 1 місце', 'Кіл-ть балів поділити на кількість авторів', 4, 1);''')
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (16, 'за кращу методрозробку: 2 місце', 'Кіл-ть балів поділити на кількість авторів', 3, 1);''')
     conn.execute('''INSERT INTO "main"."load_page_work_types" VALUES (17, 'за кращу методрозробку: 3 місце', 'Кіл-ть балів поділити на кількість авторів', 2, 1);''')
+
 
 
 def downgrade():

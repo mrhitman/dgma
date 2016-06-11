@@ -9,6 +9,7 @@ from models.professor import Professor
 from models.student import Student
 from models.student_mark import StudentMark
 from models.discipline import Discipline
+from models.load_page_subtype import LoadPageSubtype
 
 from config import Config
 from database import db
