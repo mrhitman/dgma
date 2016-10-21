@@ -1,18 +1,17 @@
-"""Students migration
+""" add mark/schedule
 
-Revision ID: 01ce433b00fa
-Revises: 7641a3820b40
-Create Date: 2016-05-23 08:37:27.956588
+Revision ID: 26507d5ea2db
+Revises: f7847e981e2d
+Create Date: 2016-10-21 16:50:35.691197
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '01ce433b00fa'
-down_revision = '7641a3820b40'
+revision = '26507d5ea2db'
+down_revision = 'f7847e981e2d'
 
 from alembic import op
 import sqlalchemy as sa
-
 
 def upgrade():
     op.create_table('student_discipline_mark',

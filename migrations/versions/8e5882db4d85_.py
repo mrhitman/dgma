@@ -1,14 +1,14 @@
-"""Subjects added
+"""disciplines
 
-Revision ID: c49ea3f8c9e5
-Revises: 01ce433b00fa
-Create Date: 2016-10-21 15:30:36.332298
+Revision ID: 8e5882db4d85
+Revises: 26507d5ea2db
+Create Date: 2016-10-21 16:51:08.954319
 
 """
 
 # revision identifiers, used by Alembic.
-revision = 'c49ea3f8c9e5'
-down_revision = '01ce433b00fa'
+revision = '8e5882db4d85'
+down_revision = '26507d5ea2db'
 
 from alembic import op
 import sqlalchemy as sa
