@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('image', sa.String(length=100), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('load_page_work_types',
+    op.create_table('load_page_work_type',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=25), nullable=True),
     sa.Column('info', sa.String(length=30), nullable=True),
@@ -60,7 +60,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('load_page_root_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
-    sa.ForeignKeyConstraint(['work_type_id'], ['load_page_work_types.id'], ),
+    sa.ForeignKeyConstraint(['work_type_id'], ['load_page_work_type.id'], ),
     sa.ForeignKeyConstraint(['load_page_root_id'], ['load_page_root.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -81,6 +81,11 @@ def upgrade():
     sa.Column('name', sa.String(50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('load_page_type',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     ### end Alembic commands ###
 
 
@@ -91,7 +96,8 @@ def downgrade():
     op.drop_table('cathedra')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
-    op.drop_table('load_page_work_types')
+    op.drop_table('load_page_work_type')
     op.drop_table('facility')
     op.drop_table('load_page_subtype')
+    op.drop_table('load_page_type')
     ### end Alembic commands ###
