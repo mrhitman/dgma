@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from database import db
 
 
-class StudentDisciplineMark(db.Model):
+class StudentSubjectMark(db.Model):
     ''' Отметка студента по предмету '''
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     student_id = db.Column(db.Integer, ForeignKey('student.id'))

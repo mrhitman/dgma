@@ -8,8 +8,8 @@ from config import Config
 from database import db
 from login_manger import login_manager
 from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkType, LoadPageSubtype, Group
-from models.discipline import Discipline
-from models.student_mark import StudentMark
+from models.subject import Subject
+from models.student_subject_mark import StudentSubjectMark
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -27,13 +27,13 @@ app.register_blueprint(facility.facility)
 admin = Admin(app, name='dgma admin', template_mode='bootstrap3')
 admin.add_view(ModelView(Facility, db.session))
 admin.add_view(ModelView(Cathedra, db.session))
-admin.add_view(ModelView(Discipline, db.session))
+admin.add_view(ModelView(Subject, db.session))
 admin.add_view(ModelView(Group, db.session))
 admin.add_view(ModelView(LoadPageWorkType, db.session))
 admin.add_view(ModelView(LoadPageSubtype, db.session))
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Student, db.session))
-admin.add_view(ModelView(StudentMark, db.session))
+admin.add_view(ModelView(StudentSubjectMark, db.session))
 admin.add_view(ModelView(Professor, db.session))
 admin.add_view(ModelView(LoadPage, db.session))
 

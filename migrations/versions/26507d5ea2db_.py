@@ -14,7 +14,7 @@ from alembic import op
 import sqlalchemy as sa
 
 def upgrade():
-    op.create_table('student_discipline_mark',
+    op.create_table('student_subject_mark',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('student_id', sa.Integer(), nullable=True),
     sa.Column('subject_id', sa.Integer(), nullable=True),

@@ -15,7 +15,7 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    op.create_table('discipline',
+    op.create_table('subject',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('cathedra_id', sa.Integer(), nullable=True),
@@ -23,17 +23,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['cathedra_id'], ['cathedra.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('student_mark',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('student_id', sa.Integer(), nullable=True),
-    sa.Column('discipline_id', sa.Integer(), nullable=True),
-    sa.Column('mark', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['student_id'], ['student.id'], ),
-    sa.ForeignKeyConstraint(['discipline_id'], ['discipline.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
 
 
 def downgrade():
-    op.drop_table('discipline')
-    op.drop_table('student_mark')
+    op.drop_table('subject')
