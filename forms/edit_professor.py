@@ -1,10 +1,10 @@
-from flask.ext.wtf import Form
+from flask.ext.wtf import FlaskForm
 from wtforms import validators, StringField, DateField, FileField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from models.cathedra import possible_cathedras
 
 
-class EditProfessorForm(Form):
+class EditProfessorForm(FlaskForm):
     name = StringField('Имя', [validators.Length(min=4, max=50)])
     second_name = StringField('Фамилия', [validators.Length(min=4, max=50)])
     middle_name = StringField('Отчество', [validators.Length(min=4, max=50)])

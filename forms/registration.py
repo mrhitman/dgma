@@ -1,11 +1,11 @@
-from flask.ext.wtf import Form
+from flask.ext.wtf import FlaskForm
 from wtforms import PasswordField, validators, StringField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from models.cathedra import possible_cathedras
 from wtforms.fields.html5 import DateField
 
 
-class RegistrationForm(Form):
+class RegistrationForm(FlaskForm):
     name = StringField('Имя', [validators.Length(min=4, max=50)])
     second_name = StringField('Фамилия', [validators.Length(min=4, max=50)])
     middle_name = StringField('Отчество', [validators.Length(min=4, max=50)])
