@@ -7,7 +7,7 @@ from blueprints import site, professor, facility, student
 from config import Config
 from database import db
 from login_manger import login_manager
-from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkTypes, LoadPageSubtype, Group
+from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkType, LoadPageSubtype, Group
 from models.discipline import Discipline
 from models.student_mark import StudentMark
 
@@ -29,7 +29,7 @@ admin.add_view(ModelView(Facility, db.session))
 admin.add_view(ModelView(Cathedra, db.session))
 admin.add_view(ModelView(Discipline, db.session))
 admin.add_view(ModelView(Group, db.session))
-admin.add_view(ModelView(LoadPageWorkTypes, db.session))
+admin.add_view(ModelView(LoadPageWorkType, db.session))
 admin.add_view(ModelView(LoadPageSubtype, db.session))
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Student, db.session))

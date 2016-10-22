@@ -19,6 +19,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('cathedra_id', sa.Integer(), nullable=True),
+    sa.Column('credits', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['cathedra_id'], ['cathedra.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

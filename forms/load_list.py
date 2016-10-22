@@ -2,7 +2,7 @@ from flask.ext.wtf import Form
 from wtforms import validators, IntegerField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
-from models.load_page_work_types import possible_works
+from models.load_page_work_type import possible_works
 
 
 class LoadListAddForm(Form):

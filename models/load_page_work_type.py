@@ -5,10 +5,10 @@ from database import db
 
 
 def possible_works():
-    return LoadPageWorkTypes.query
+    return LoadPageWorkType.query
 
 
-class LoadPageWorkTypes(db.Model):
+class LoadPageWorkType(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(25))
     info = db.Column(db.String(30))
