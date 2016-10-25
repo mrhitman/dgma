@@ -19,9 +19,11 @@ def upgrade():
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('user_id', sa.Integer(), nullable=True),
         sa.Column('group_id', sa.Integer(), nullable=True),
+        sa.Column('receipt_trimester_id', sa.Integer(), nullable=True),
         sa.Column('photo', sa.String(length=100), nullable=True),
         sa.ForeignKeyConstraint(['group_id'], ['group.id'], ),
         sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
+        sa.ForeignKeyConstraint(['receipt_trimester_id'], ['trimester.id'], ),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_table('group',

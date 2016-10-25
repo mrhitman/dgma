@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship
 
 from database import db
 from models.student_subject_mark import StudentSubjectMark
+from models.trimester import Trimester
 
 
 class Student(db.Model):
@@ -12,9 +13,17 @@ class Student(db.Model):
     group_id = db.Column(db.Integer, ForeignKey('group.id'))
     group = relationship("Group")
     photo = db.Column(db.String(100))
+    receipt_trimester_id = db.Column(db.Integer, ForeignKey('trimester.id'))
+    receipt_trimester = relationship("Trimester")
 
     def __repr__(self):
         return '<Student %r %r %r>' % (self.user.name, self.user.second_name, self.user.middle_name)
+
+    def get_marks(self):
+        marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
+        trimesters = Trimester.query.filter(Trimester.start_date >= self.receipt_date).all()
+        trimesters = map(None, *([iter(trimesters)] * 3))
+        return trimesters
 
     def get_avg_mark(self):
         marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()

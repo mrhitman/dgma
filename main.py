@@ -7,10 +7,8 @@ from blueprints import site, professor, facility, student
 from config import Config
 from database import db
 from login_manger import login_manager
-from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkType, LoadPageSubtype, Group
-from models.subject import Subject
-from models.student_subject_mark import StudentSubjectMark
-from models.trimester import Trimester
+from models import User, Student, Professor, Cathedra, Facility, LoadPage, LoadPageWorkType, LoadPageSubtype, Group, \
+    Subject, Trimester, StudentSubjectMark
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -40,4 +38,4 @@ admin.add_view(ModelView(Professor, db.session))
 admin.add_view(ModelView(Trimester, db.session))
 
 if __name__ == "__main__":
-    app.run(port=9000)
+    app.run(port=8080)

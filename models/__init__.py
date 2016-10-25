@@ -7,3 +7,6 @@ from models.load_page import LoadPage
 from models.load_page_work_type import LoadPageWorkType
 from models.group import Group
 from models.load_page_subtype import LoadPageSubtype
+from models.trimester import Trimester
+from models.student_subject_mark import StudentSubjectMark
+from models.subject import Subject
