@@ -24,7 +24,7 @@
             <td>{{ student.user.middle_name }}</td>
             <td>{{ student.group.name }}</td>
             <td>{{ student.group.cathedra.name }}</td>
-            <td>{{ student.get_avg_mark() }}</td>
+            <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
         </tr>
         {% endfor %}
         </tbody>
