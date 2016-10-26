@@ -5,7 +5,7 @@ from models.student import Student
 student = Blueprint('student_page', __name__, template_folder='templates')
 
 
-@student.route('/student_all')
+@student.route('/student/all')
 def student_all():
     students = Student.query.all()
     return render_template('student/list/list.html', students=students)

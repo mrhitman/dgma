@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div style="margin: 10px">
+        <h3>{{ group.name }}</h3>
+        {{ group.cathedra.name }}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>ФИО</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for s in group.students %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ s.user.second_name }} {{ s.user.name }} {{ s.user.middle_name }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
