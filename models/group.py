@@ -12,4 +12,4 @@ class Group(db.Model):
     students = relationship("Student", back_populates="group")
 
     def __repr__(self):
-        return '<Group %r %r>' % (self.name, self.cathedra.name)
+        return '<Group %r %r>' % (self.name, self.cathedra.short_name)

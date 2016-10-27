@@ -41,34 +41,7 @@
         </div>
     </nav>
     <div id="wrapper">
-        {% block leftmenu %}
-            {% if current_user.is_authenticated %}
-                <div id="sidebar-wrapper">
-                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-                        <li>
-                            <a href="{{ url_for('professor_page.personal_page') }}">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>Персональная страница</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('facility_page.index') }}">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>Факультеты</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('professor_page.load_page_root') }}">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span>Нагрузочный лист</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('professor_page.edit') }}">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-youtube-play fa-stack-1x "></i></span>Редактировать данные</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('site.logout') }}">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>Выход</a>
-                        </li>
-                    </ul>
-                </div>
-            {% endif %}
-        {% endblock %}
+
         {% block content %}{% endblock %}
     </div>
     <div id="copyright" class="container">

@@ -1,7 +1,9 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
-    {{ student.user.name }}
-    {{ student.user.second_name }}
-    {{ student.user.middle_name }}
-    {{ student.receipt_date }}
+    <div>
+        <div class="row">{{ student.user.name }}</div>
+        <div class="row">{{ student.user.second_name }}</div>
+        <div class="row">{{ student.user.middle_name }}</div>
+        <div class="row">{{ student.receipt_trimester.start_date }}</div>
+    </div>
 {% endblock %}

@@ -15,6 +15,7 @@ class Student(db.Model):
     photo = db.Column(db.String(100))
     receipt_trimester_id = db.Column(db.Integer, ForeignKey('trimester.id'))
     receipt_trimester = relationship("Trimester")
+    marks = relationship("StudentSubjectMark", back_populates='student')
 
     def __repr__(self):
         return '<Student %r %r %r>' % (self.user.name, self.user.second_name, self.user.middle_name)
