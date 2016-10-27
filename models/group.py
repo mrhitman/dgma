@@ -9,6 +9,7 @@ class Group(db.Model):
     name = db.Column(db.String(40))
     cathedra_id = db.Column(db.Integer, ForeignKey('cathedra.id'))
     cathedra = relationship("Cathedra")
+    students = relationship("Student", back_populates="group")
 
     def __repr__(self):
         return '<Group %r %r>' % (self.name, self.cathedra.name)
