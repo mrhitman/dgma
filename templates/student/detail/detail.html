@@ -1,9 +1,79 @@
 {% extends "layout.html" %}
+{% block styles %}
+    {{ super() }}
+    <style>
+        .chart {
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+        }
+
+        img {
+            max-width: 300px;
+            max-height: 350px;
+            margin-left: 10px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <div>
-        <div class="row">{{ student.user.name }}</div>
-        <div class="row">{{ student.user.second_name }}</div>
-        <div class="row">{{ student.user.middle_name }}</div>
-        <div class="row">{{ student.receipt_trimester.start_date }}</div>
+    {% block scripts %}
+        {{ super() }}
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
+    {% endblock %}
+    <div class="container">
+        <div style="float: left;">
+            <div id="photo">
+                <a href="{{ url_for('professor_page.edit') }}">
+                    {% if student.photo %}
+                        <img src="{{ url_for('static', filename=student.photo) }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='photos/no-profile-img.gif') }}">
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">Фамилия:</div>
+                <div class="col-md-4">{{ student.user.second_name }}</div>
+                <div class="col-md-4">Имя:</div>
+                <div class="col-md-4">{{ student.user.name }}</div>
+                <div class="col-md-4">Отчество:</div>
+                <div class="col-md-4">{{ student.user.middle_name }}</div>
+                <div class="col-md-4">Дата рождения:</div>
+                <div class="col-md-4">{{ student.user.birthday.strftime('%Y %m %d') }}</div>
+                <div class="col-md-4">Группа:</div>
+                <div class="col-md-4">{{ student.group.name }}</div>
+                <div class="col-md-4">Дата поступления:</div>
+                <div class="col-md-4">{{ student.receipt_trimester.start_date.strftime('%Y %m %d') }}</div>
+                <div class="col-md-4">Средний бал:</div>
+                <div class="col-md-4">{{ student.get_avg_mark() }}</div>
+            </div>
+        </div>
     </div>
+    <div class="chart">
+        <canvas id="buyers" width="600" height="240"></canvas>
+    </div>
+    <script>
+        var buyerData = {
+            labels: ["January", "February", "March", "April", "May", "June"],
+            datasets: [
+                {
+                    fillColor: "rgba(172,194,132,0.4)",
+                    strokeColor: "#ACC26D",
+                    pointColor: "#fff",
+                    pointStrokeColor: "#9DB86D",
+                    data: [203, 156, 99, 251, 305, 247]
+                }
+            ]
+        }
+        var buyers = document.getElementById('buyers').getContext('2d');
+        var chart = new Chart(buyers, {
+            type: 'line',
+            data: buyerData,
+            options: {
+                responsive: false
+            }
+        });
+    </script>
 {% endblock %}
