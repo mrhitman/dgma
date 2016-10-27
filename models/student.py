@@ -25,6 +25,11 @@ class Student(db.Model):
         trimesters = map(None, *([iter(trimesters)] * 3))
         return trimesters
 
+    def get_trimester_marks(self, trimester_id):
+        trimester = Trimester.query.get(trimester_id)
+        marks = StudentSubjectMark.query.filter(
+            trimester.start_date <= StudentSubjectMark.date <= trimester.end_date).all()
+
     def get_avg_mark(self):
         marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
         if len(marks) == 0:

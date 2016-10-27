@@ -1,6 +1,6 @@
 from flask import Flask
-from flask.ext.admin import Admin
-from flask.ext.admin.contrib.sqla import ModelView
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from flask_bootstrap import Bootstrap
 
 from blueprints import site, professor, facility, student

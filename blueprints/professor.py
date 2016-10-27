@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, url_for
-from flask.ext.login import current_user
-from flask_login import login_required
+from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename, redirect
 
 from database import db

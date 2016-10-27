@@ -1,4 +1,4 @@
-from flask.ext.login import unicode
+from flask_login import unicode
 
 from database import db
 

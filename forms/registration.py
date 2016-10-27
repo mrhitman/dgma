@@ -1,4 +1,4 @@
-from flask.ext.wtf import FlaskForm
+from flask_wtf import FlaskForm
 from wtforms import PasswordField, validators, StringField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from models.cathedra import possible_cathedras
