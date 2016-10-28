@@ -1,9 +1,12 @@
+from collections import defaultdict
+
+from flask import json
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import db
 from models.student_subject_mark import StudentSubjectMark
-from models.trimester import Trimester
+from models.subject import Subject
 
 
 class Student(db.Model):
@@ -20,19 +23,18 @@ class Student(db.Model):
     def __repr__(self):
         return '<Student %r %r %r>' % (self.user.name, self.user.second_name, self.user.middle_name)
 
-    def get_marks(self):
-        marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
-        trimesters = Trimester.query.filter(Trimester.start_date >= self.receipt_date).all()
-        trimesters = map(None, *([iter(trimesters)] * 3))
-        return trimesters
-
-    def get_trimester_marks(self, trimester_id):
-        trimester = Trimester.query.get(trimester_id)
-        marks = StudentSubjectMark.query.filter(
-            trimester.start_date <= StudentSubjectMark.date <= trimester.end_date).all()
-
     def get_avg_mark(self):
         marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
         if len(marks) == 0:
             return 0
         return sum([m.mark for m in marks]) / len(marks)
+
+    def get_subjects_json(self):
+        data = defaultdict(list)
+        for subject_mark in self.marks:
+            data.setdefault(subject_mark.subject.name, [])
+            data[subject_mark.subject.name].append(subject_mark.mark)
+        for subject_name in data:
+            data[subject_name] = sum(data[subject_name]) / len(data[subject_name])
+        print(data)
+        return json.dumps(data)
