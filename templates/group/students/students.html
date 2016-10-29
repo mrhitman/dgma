@@ -1,20 +1,22 @@
-{% extends "layout.html" %}
-{% block content %}
-    <div style="margin: 10px">
-        <h3>{{ group.name }}</h3>
-        {{ group.cathedra.name }}
+{% extends 'student_layout.html' %}
+{% block student_content %}
+    <div class="container-fluid">
+        <h3>{{ student.group.name }}</h3>
+        {{ student.group.cathedra.name }}
         <table class="table">
             <thead>
             <tr>
                 <th>№</th>
                 <th>ФИО</th>
+                <th>Cредний бал</th>
             </tr>
             </thead>
             <tbody>
-            {% for s in group.students %}
+            {% for s in student.group.students %}
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ s.user.second_name }} {{ s.user.name }} {{ s.user.middle_name }}</td>
+                    <td>{{ s.get_avg_mark()|round(1, 'floor') }}</td>
                 </tr>
             {% endfor %}
             </tbody>

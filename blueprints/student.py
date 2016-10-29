@@ -14,4 +14,10 @@ def student_all():
 @student.route('/student/<int:id>')
 def detail(id):
     student = Student.query.get_or_404(id)
-    return render_template('student/detail/detail2.html', student=student)
+    return render_template('student/detail/detail.html', student=student)
+
+
+@student.route('/student/<int:id>/group')
+def group(id):
+    student = Student.query.get_or_404(id)
+    return render_template('group/students/students.html', student=student)
