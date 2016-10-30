@@ -16,4 +16,4 @@ class StudentSubjectMark(db.Model):
     date = db.Column(db.Date)
 
     def __repr__(self):
-        return '%s: %d (%s)' % (self.subject.name, self.mark, self.date.strftime('%Y-%m-%d'))
+        return '%s: %d' % (self.subject.name, self.mark)

@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import current_user
 
 from models.student import Student
 
@@ -6,9 +7,9 @@ student = Blueprint('student_page', __name__, template_folder='templates')
 
 
 @student.route('/student/all')
-def student_all():
+def all():
     students = Student.query.all()
-    return render_template('student/list/list.html', students=students)
+    return render_template('student/list/list.html', students=students, student=current_user)
 
 
 @student.route('/student/<int:id>')

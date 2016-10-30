@@ -6,7 +6,6 @@ from sqlalchemy.orm import relationship
 
 from database import db
 from models.student_subject_mark import StudentSubjectMark
-from models.subject import Subject
 
 
 class Student(db.Model):
@@ -36,5 +35,4 @@ class Student(db.Model):
             data[subject_mark.subject.name].append(subject_mark.mark)
         for subject_name in data:
             data[subject_name] = sum(data[subject_name]) / len(data[subject_name])
-        print(data)
         return json.dumps(data)

@@ -1,33 +1,87 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'student_layout.html' %}
+{% block student_content %}
 
-<div class="content" style="margin: 0 30px 0 30px;">
-    <h3>Список студентов</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>№</th>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Отчество</th>
-            <th>Група</th>
-            <th>Кафедра</th>
-            <th>Средний рейтинг</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for student in students %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ student.user.name }}</td>
-            <td>{{ student.user.second_name }}</td>
-            <td>{{ student.user.middle_name }}</td>
-            <td>{{ student.group.name }}</td>
-            <td>{{ student.group.cathedra.name }}</td>
-            <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+    <div class="container-fluid">
+        <h3>Список студентов</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Отчество</th>
+                <th>Група</th>
+                <th>Кафедра</th>
+                <th>Средний рейтинг</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="6">Отличники:</td>
+            </tr>
+            {% for student in students %}
+                {% if 100 >= student.get_avg_mark() > 85 %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student.user.name }}</td>
+                        <td>{{ student.user.second_name }}</td>
+                        <td>{{ student.user.middle_name }}</td>
+                        <td>{{ student.group.name }}</td>
+                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="6">Хорошисты:</td>
+            </tr>
+            {% for student in students %}
+                {% if 85 >= student.get_avg_mark() > 75 %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student.user.name }}</td>
+                        <td>{{ student.user.second_name }}</td>
+                        <td>{{ student.user.middle_name }}</td>
+                        <td>{{ student.group.name }}</td>
+                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="6">Успевающие:</td>
+            </tr>
+            {% for student in students %}
+                {% if 75 >= student.get_avg_mark() > 55 %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student.user.name }}</td>
+                        <td>{{ student.user.second_name }}</td>
+                        <td>{{ student.user.middle_name }}</td>
+                        <td>{{ student.group.name }}</td>
+                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td colspan="6">Отстающие:</td>
+            </tr>
+            {% for student in students %}
+                {% if 55 >= student.get_avg_mark() > 0 %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student.user.name }}</td>
+                        <td>{{ student.user.second_name }}</td>
+                        <td>{{ student.user.middle_name }}</td>
+                        <td>{{ student.group.name }}</td>
+                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.get_avg_mark()|round(1, 'floor') }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
