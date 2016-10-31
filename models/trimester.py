@@ -14,7 +14,7 @@ class Trimester(db.Model):
     @classmethod
     def get_active(cls):
         now = time.strftime('%Y-%m-%d')
-        return cls.query.filter(cls.start_date <= now <= cls.end_date).one()
+        return cls.query.filter(cls.start_date <= now, now <= cls.end_date).one()
 
     def __repr__(self):
         return '<Trimester %s:%s>' % (self.start_date.strftime('%Y-%m-%d'), self.end_date.strftime('%Y-%m-%d'))

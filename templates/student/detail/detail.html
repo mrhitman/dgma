@@ -56,10 +56,31 @@
             <div class="col-md-9"> {{ student.get_avg_mark()|round(1, 'floor') }}</div>
         </div>
     </div>
+    <div id="canvas-container">
+            <canvas id="marks" width="800" height="400"></canvas>
+        </div>
     <div class="clearfix"></div>
     <div class="col-sm-12">
-        <div id="canvas-container">
-            <canvas id="marks" width="900" height="400"></canvas>
+        <div class="row-fluid">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Предмет</th>
+                    <th>Дата</th>
+                    <th>Оценка</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for m in student.get_active_trimester() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ m.subject.name }}</td>
+                        <td>{{ m.date.strftime('%Y/%m/%d') }}</td>
+                        <td>{{ m.mark }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
         </div>
     </div>
 {% endblock %}
