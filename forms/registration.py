@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, validators, StringField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from models.cathedra import possible_cathedras
 from wtforms.fields.html5 import DateField
+
+from models.cathedra import possible_cathedras
 
 
 class RegistrationForm(FlaskForm):
@@ -16,6 +17,9 @@ class RegistrationForm(FlaskForm):
         validators.EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Подтверждение пароля')
+
+
+class ProfessorRegistrationForm(RegistrationForm):
     cathedra = QuerySelectField('Кафедра', query_factory=possible_cathedras, get_label='short_name')
     post = StringField('Должность', [validators.Length(min=4, max=50)])
     academic_degree = StringField('Ученая степень', [validators.Length(min=1, max=50)])

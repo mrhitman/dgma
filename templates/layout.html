@@ -5,8 +5,12 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('site.index') }}" class="navbar-brand">ДГМА деканат</a></li>
-                    <li><a href="{{ url_for('site.index') }}">Преподватели</a></li>
-                    <li><a href="{{ url_for('site.index') }}">Студенты</a></li>
+                    {% if not current_user.is_authenticated %}
+                        <li><a href="{{ url_for('site.login') }}">Логин</a></li>
+                        <li><a href="{{ url_for('site.register') }}">Регистрация</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('site.logout') }}">Выход</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
