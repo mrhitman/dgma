@@ -1,5 +1,3 @@
-from flask_login import unicode
-
 from database import db
 
 
@@ -22,7 +20,7 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return unicode(self.id)
+        return self.id
 
     def __repr__(self):
         return '<User %r %r %r>' % (self.name, self.second_name, self.middle_name)
