@@ -5,6 +5,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
 from database import db
+from models.trimester import Trimester
 from models.student_subject_mark import StudentSubjectMark
 
 
@@ -36,3 +37,7 @@ class Student(db.Model):
         for subject_name in data:
             data[subject_name] = sum(data[subject_name]) / len(data[subject_name])
         return json.dumps(data)
+
+    def get_active_trimester(self):
+        trimester = Trimester.get_active()
+        return StudentSubjectMark.query.filter(trimester.end_date >= StudentSubjectMark.date).all()
