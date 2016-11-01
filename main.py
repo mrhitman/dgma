@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -25,18 +26,18 @@ app.register_blueprint(facility.facility)
 app.register_blueprint(group.group)
 
 admin = Admin(app, name='dgma admin', template_mode='bootstrap3')
-admin.add_view(ModelView(Facility, db.session))
-admin.add_view(ModelView(Cathedra, db.session))
-admin.add_view(ModelView(Group, db.session))
-admin.add_view(ModelView(LoadPage, db.session))
-admin.add_view(ModelView(LoadPageWorkType, db.session))
-admin.add_view(ModelView(LoadPageSubtype, db.session))
-admin.add_view(ModelView(Subject, db.session))
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Student, db.session))
-admin.add_view(ModelView(StudentSubjectMark, db.session))
-admin.add_view(ModelView(Professor, db.session))
-admin.add_view(ModelView(Trimester, db.session))
+admin.add_view(ModelView(Facility, db.session, 'Факультет'))
+admin.add_view(ModelView(Cathedra, db.session, 'Кафедра'))
+admin.add_view(ModelView(Group, db.session, 'Группа'))
+admin.add_view(ModelView(LoadPage, db.session, 'Загрузочный лист'))
+admin.add_view(ModelView(LoadPageWorkType, db.session, 'Типы работ для загр.л.'))
+admin.add_view(ModelView(LoadPageSubtype, db.session, 'Подтипы загр.л.'))
+admin.add_view(ModelView(Subject, db.session, 'Предмет'))
+admin.add_view(ModelView(User, db.session, 'Пользователь'))
+admin.add_view(ModelView(Student, db.session, 'Студент'))
+admin.add_view(ModelView(StudentSubjectMark, db.session, 'Оценки студентов'))
+admin.add_view(ModelView(Professor, db.session, 'Преподаватель'))
+admin.add_view(ModelView(Trimester, db.session, 'Триместры'))
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))

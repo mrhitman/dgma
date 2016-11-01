@@ -40,4 +40,4 @@ class Student(db.Model):
 
     def get_active_trimester(self):
         trimester = Trimester.get_active()
-        return StudentSubjectMark.query.filter(trimester.end_date >= StudentSubjectMark.date).all()
+        return StudentSubjectMark.query.filter(trimester.end_date >= StudentSubjectMark.date, StudentSubjectMark.student_id == self.id).all()
