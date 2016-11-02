@@ -1,5 +1,5 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'professor_layout.html' %}
+{% block professor_content %}
 <div id="page">
     <a href="{{ url_for('professor_page.load_page_root', id=load_page_id) }}"><< Вернутся на лист</a>
     {% if load_page|length == 0 %}

@@ -1,5 +1,5 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "professor_layout.html" %}
+{% block professor_content %}
 <div id="page">
     {% from "formhelpers.html" import render_field %}
     <form method=post action="{{ url_for('professor_page.edit') }}" class="form-horizontal" enctype="multipart/form-data">

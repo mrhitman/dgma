@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <p><a class="btn btn-default btn-block" href="{{ url_for('professor_page.personal_page') }}">Личная
+                    страничка</a></p>
+                <p><a class="btn btn-default btn-block" href="{{ url_for('facility_page.index') }}">Факультеты</a></p>
+                <p><a class="btn btn-default btn-block" href="{{ url_for('professor_page.load_page_root') }}">Нагрузочный лист</a></p>
+                <p><a class="btn btn-default btn-block" href="{{ url_for('professor_page.edit') }}">Редактировать данные</a></p>
+            </div>
+            <div class="col-sm-8 text-left">
+                <div class="container-fluid well">
+                    <div class="row">
+                        {% block professor_content %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 sidenav">
+                <p></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

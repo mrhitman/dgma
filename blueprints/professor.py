@@ -16,21 +16,21 @@ professor = Blueprint('professor_page', __name__, template_folder='templates')
 @login_required
 @professor.route('/personal_page')
 def personal_page():
-    person = Professor.query.get_or_404(current_user.get_id())
+    person = Professor.query.filter_by(user_id=current_user.get_id()).first()
     return render_template('professor/personal_page/personal_page.html', person=person)
 
 
 @login_required
 @professor.route('/personal_guest_page/<int:id>')
 def personal_guest_page(id):
-    person = Professor.query.get_or_404(id)
+    person = Professor.query.filter_by(user_id=id).first()
     return render_template('professor/personal_page/personal_page.html', person=person)
 
 
 @login_required
 @professor.route('/edit', methods=['POST', 'GET'])
 def edit():
-    person = Professor.query.get_or_404(current_user.get_id())
+    person = Professor.query.filter_by(user_id=current_user.get_id()).first()
     form = EditProfessorForm()
     if form.is_submitted():
         filename = secure_filename(form.photo.data.filename)

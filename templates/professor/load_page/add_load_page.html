@@ -1,5 +1,5 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'professor_layout.html' %}
+{% block professor_content %}
 <div id="page">
     {% from "formhelpers.html" import render_field %}
     <form method=post action="{{ url_for('professor_page.add_load_page', id=load_page_id) }}" class="form-horizontal">
