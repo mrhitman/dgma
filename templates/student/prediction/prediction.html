@@ -1,4 +1,63 @@
 {% extends 'student_layout.html' %}
+{% block scripts %}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js'></script>
+    <script>
+        var students = {{ chart_data|safe }};
+        var avgs = function() {
+            var tmp = [];
+            Object.values(students).forEach(function(item, i, arr) {
+                tmp.push(item.avg)
+            })
+            return tmp;
+        }();
+        var predictions = function() {
+            var tmp = [];
+            Object.values(students).forEach(function(item, i, arr) {
+                tmp.push(item.prediction)
+            })
+            return tmp;
+        }();
+        var marksData = {
+            labels: Object.keys(students),
+            datasets: [{
+                label: 'Средние баллы',
+                data: avgs,
+                backgroundColor: [
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Прогнозируемые изменения',
+                data: predictions,
+                backgroundColor: [
+                    'rgba(64, 159, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(64, 159, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        var marks = document.getElementById('marks').getContext('2d');
+        new Chart(marks, {
+            type: 'line',
+            data: marksData,
+            options: {
+                responsive: false,
+                scale: {
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+{% endblock %}
 {% block student_content %}
 
     <div class="container-fluid">
@@ -27,7 +86,7 @@
                         <td>{{ student.user.second_name }}</td>
                         <td>{{ student.user.middle_name }}</td>
                         <td>{{ student.group.name }}</td>
-                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.group.cathedra.short_name }}</td>
                         <td>{{ student.get_prediction_mark()|round(2, 'floor') }}</td>
                     </tr>
                 {% endif %}
@@ -43,7 +102,7 @@
                         <td>{{ student.user.second_name }}</td>
                         <td>{{ student.user.middle_name }}</td>
                         <td>{{ student.group.name }}</td>
-                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.group.cathedra.short_name }}</td>
                         <td>{{ student.get_prediction_mark()|round(2, 'floor') }}</td>
                     </tr>
                 {% endif %}
@@ -59,7 +118,7 @@
                         <td>{{ student.user.second_name }}</td>
                         <td>{{ student.user.middle_name }}</td>
                         <td>{{ student.group.name }}</td>
-                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.group.cathedra.short_name }}</td>
                         <td>{{ student.get_prediction_mark()|round(2, 'floor') }}</td>
                     </tr>
                 {% endif %}
@@ -75,7 +134,7 @@
                         <td>{{ student.user.second_name }}</td>
                         <td>{{ student.user.middle_name }}</td>
                         <td>{{ student.group.name }}</td>
-                        <td>{{ student.group.cathedra.name }}</td>
+                        <td>{{ student.group.cathedra.short_name }}</td>
                         <td>{{ student.get_prediction_mark()|round(2, 'floor') }}</td>
                     </tr>
                 {% endif %}
@@ -83,5 +142,6 @@
 
             </tbody>
         </table>
+        <canvas id="marks" width="800" height="400"></canvas>
     </div>
 {% endblock %}

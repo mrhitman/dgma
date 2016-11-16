@@ -28,20 +28,24 @@ class Student(db.Model):
 
 
     def get_avg_mark(self):
-        marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
-        if len(marks) == 0:
-            return 0
-        return sum([m.mark for m in marks]) / len(marks)
+        if not hasattr(self, 'avg'):
+            marks = StudentSubjectMark.query.filter_by(student_id=self.id).all()
+            if len(marks) == 0:
+                self.avg = 0
+            self.avg = sum([m.mark for m in marks]) / len(marks)
+        return self.avg
     
     
     def get_prediction_mark(self):
-        marks = StudentSubjectMark.query.filter_by(student_id=self.id).order_by(StudentSubjectMark.date).all()
-        if len(marks) == 0:
-            return 0
-        y = numpy.array([m.mark for m in marks])
-        x = numpy.array(range(len(marks)))
-        z = numpy.polyfit(x, y, 1)
-        return z[1]
+        if not hasattr(self, 'predict'):
+            marks = StudentSubjectMark.query.filter_by(student_id=self.id).order_by(StudentSubjectMark.date).all()
+            if len(marks) == 0:
+                return 0
+            y = numpy.array([m.mark for m in marks])
+            x = numpy.array(range(len(marks)))
+            z = numpy.polyfit(x, y, 1)
+            self.predict = z[1]
+        return self.predict
         
         
     def get_subjects_json(self):

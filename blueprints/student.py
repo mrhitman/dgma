@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask_login import current_user
 
 from models.student import Student
-
+import json
 student = Blueprint('student_page', __name__, template_folder='templates')
 
 
@@ -15,7 +15,10 @@ def all():
 @student.route('/student/prediction')
 def prediction():
     students = Student.query.all()
-    return render_template('student/prediction/prediction.html', students=students, student=current_user)
+    chart_data = {}
+    for student in students:
+        chart_data[student.user.second_name + ' ' + student.user.name] = {'avg': student.get_avg_mark(), 'prediction': student.get_prediction_mark()}
+    return render_template('student/prediction/prediction.html', students=students, student=current_user, chart_data=json.dumps(chart_data))
 
 
 @student.route('/student/<int:id>')
