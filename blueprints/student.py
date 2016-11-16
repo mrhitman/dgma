@@ -12,6 +12,12 @@ def all():
     return render_template('student/list/list.html', students=students, student=current_user)
 
 
+@student.route('/student/prediction')
+def prediction():
+    students = Student.query.all()
+    return render_template('student/prediction/prediction.html', students=students, student=current_user)
+
+
 @student.route('/student/<int:id>')
 def detail(id):
     student = Student.query.get_or_404(id)
